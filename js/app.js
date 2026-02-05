@@ -625,12 +625,10 @@
                 SyllabusBuilder.updateField('additionalMaterials', data.additionalMaterials);
             }
 
-            elements.includeDiversity.checked = data.includeDiversity !== false;
-            elements.includeCompliance.checked = data.includeCompliance === true;
-            elements.diversityPreview.classList.toggle('hidden', !elements.includeDiversity.checked);
-            elements.compliancePreview.classList.toggle('hidden', !elements.includeCompliance.checked);
-            SyllabusBuilder.updateField('includeDiversity', elements.includeDiversity.checked);
-            SyllabusBuilder.updateField('includeCompliance', elements.includeCompliance.checked);
+            if (data.diversityStatement !== undefined) {
+                elements.diversityStatement.value = data.diversityStatement;
+                SyllabusBuilder.updateField('diversityStatement', data.diversityStatement);
+            }
 
             if (data.customStatements) {
                 elements.customStatements.value = data.customStatements;
