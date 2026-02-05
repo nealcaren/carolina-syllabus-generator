@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNC Syllabus Generator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>UNC Syllabus Generator</h1>
+            <p>Create compliant syllabi for UNC-Chapel Hill courses</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="step-indicators">
+                <div class="step-indicator active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Course</span>
+                </div>
+                <div class="step-indicator" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Outcomes</span>
+                </div>
+                <div class="step-indicator" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Grading</span>
+                </div>
+                <div class="step-indicator" data-step="4">
+                    <span class="step-number">4</span>
+                    <span class="step-label">Materials</span>
+                </div>
+                <div class="step-indicator" data-step="5">
+                    <span class="step-number">5</span>
+                    <span class="step-label">Statements</span>
+                </div>
+                <div class="step-indicator" data-step="6">
+                    <span class="step-number">6</span>
+                    <span class="step-label">Export</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Wizard -->
+        <form id="syllabus-form" class="form-wizard">
+
+            <!-- Step 1: Course Selection -->
+            <div class="form-step active" data-step="1">
+                <h2>Course Information</h2>
+                <p class="step-description">Select your course to auto-populate course details and general education attributes.</p>
+
+                <div class="form-group">
+                    <label for="course-search">Search for Course</label>
+                    <div class="search-container">
+                        <input type="text" id="course-search" placeholder="Type course code (e.g., SOCI 101) or title..." autocomplete="off">
+                        <div id="search-results" class="search-results"></div>
+                    </div>
+                </div>
+
+                <div id="course-details" class="course-details hidden">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="course-prefix">Department</label>
+                            <input type="text" id="course-prefix" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-number">Number</label>
+                            <input type="text" id="course-number" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-credits">Credits</label>
+                            <input type="text" id="course-credits" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course-title">Course Title</label>
+                        <input type="text" id="course-title" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course-description">Catalog Description</label>
+                        <textarea id="course-description" rows="4" readonly></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>General Education Attributes</label>
+                        <div id="gened-badges" class="gened-badges"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Learning Outcomes -->
+            <div class="form-step" data-step="2">
+                <h2>Learning Outcomes</h2>
+                <p class="step-description">Define course learning objectives and review auto-populated general education outcomes.</p>
+
+                <div class="form-group">
+                    <label>Course Learning Objectives</label>
+                    <p class="field-hint">By the end of this course, students will be able to:</p>
+                    <div id="objectives-list" class="objectives-list">
+                        <!-- Objectives added dynamically -->
+                    </div>
+                    <button type="button" id="add-objective" class="btn btn-secondary">+ Add Learning Objective</button>
+                </div>
+
+                <div class="form-group">
+                    <label>General Education Learning Outcomes</label>
+                    <p class="field-hint">Confirm which gen ed requirements apply to your section. Some requirements (like FY-LAUNCH) vary by section.</p>
+                    <div id="gened-outcomes-container">
+                        <!-- Gen ed outcomes will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Grading -->
+            <div class="form-step" data-step="3">
+                <h2>Grading</h2>
+                <p class="step-description">Define your grading scale and assignment breakdown.</p>
+
+                <div class="form-group">
+                    <label>Grade Scale</label>
+                    <div class="grade-scale-options">
+                        <label class="radio-option">
+                            <input type="radio" name="grade-scale" value="standard" checked>
+                            <span>Standard UNC Scale (A, A-, B+, B, B-, etc.)</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="grade-scale" value="plusminus">
+                            <span>Plus/Minus with Custom Thresholds</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="grade-scale" value="letter">
+                            <span>Letter Grades Only (A, B, C, D, F)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="custom-scale" class="hidden">
+                    <div class="form-group">
+                        <label for="custom-scale-input">Custom Grade Thresholds</label>
+                        <textarea id="custom-scale-input" rows="4" placeholder="A: 93-100&#10;A-: 90-92&#10;B+: 87-89&#10;..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Assignment Breakdown</label>
+                    <p class="field-hint">Add assignments and their weight in the final grade. Percentages should total 100%.</p>
+
+                    <table class="assignment-table" id="assignment-table">
+                        <thead>
+                            <tr>
+                                <th>Assignment</th>
+                                <th>Percentage</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="assignment-tbody">
+                            <!-- Rows added dynamically -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><strong>Total</strong></td>
+                                <td><strong id="total-percentage">0%</strong></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <button type="button" id="add-assignment" class="btn btn-secondary">+ Add Assignment</button>
+                </div>
+
+                <div class="form-group">
+                    <label for="attendance-policy">Attendance/Participation Policy</label>
+                    <p class="field-hint">Describe how attendance or participation affects the grade (if applicable).</p>
+                    <textarea id="attendance-policy" rows="4" placeholder="e.g., Attendance is expected at all class sessions. Students who miss more than three unexcused absences may have their final grade reduced..."></textarea>
+                </div>
+            </div>
+
+            <!-- Step 4: Required Materials -->
+            <div class="form-step" data-step="4">
+                <h2>Required Materials</h2>
+                <p class="step-description">List textbooks and materials students need to purchase.</p>
+
+                <div id="materials-list">
+                    <!-- Materials added dynamically -->
+                </div>
+
+                <button type="button" id="add-material" class="btn btn-secondary">+ Add Material</button>
+
+                <div class="form-group" style="margin-top: 2rem;">
+                    <label for="additional-materials">Additional Materials (Optional)</label>
+                    <p class="field-hint">Other materials not for purchase (e.g., course pack, online resources)</p>
+                    <textarea id="additional-materials" rows="3" placeholder="e.g., Course readings available on Sakai, Access to statistical software (provided)..."></textarea>
+                </div>
+            </div>
+
+            <!-- Step 5: Statements -->
+            <div class="form-step" data-step="5">
+                <h2>Statements</h2>
+                <p class="step-description">Include recommended diversity and compliance statements.</p>
+
+                <div class="form-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="include-diversity" checked>
+                        <span>Include Diversity Statement</span>
+                    </label>
+                    <div id="diversity-statement-preview" class="statement-preview">
+                        <p><em>The course engages diverse scholarly perspectives to develop critical thinking, analysis, and debate, and inclusion of a reading does not imply endorsement.</em></p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="include-compliance">
+                        <span>Include Compliance Statement</span>
+                    </label>
+                    <div id="compliance-statement-preview" class="statement-preview hidden">
+                        <p><em>This syllabus has been prepared in compliance with UNC System Policy. The university respects the professor's expertise and discretion in course design, including the selection of course materials based on their academic merit. The readings and materials in this course have been chosen for their scholarly value in achieving the educational objectives described above.</em></p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="custom-statements">Additional Statements (Optional)</label>
+                    <p class="field-hint">Add any other policy statements (e.g., late work, academic integrity, accessibility)</p>
+                    <textarea id="custom-statements" rows="6" placeholder="Add any additional course policies or statements here..."></textarea>
+                </div>
+            </div>
+
+            <!-- Step 6: Review & Export -->
+            <div class="form-step" data-step="6">
+                <h2>Review & Export</h2>
+                <p class="step-description">Review your syllabus and export to your preferred format.</p>
+
+                <div class="preview-container">
+                    <div class="preview-header">
+                        <h3>Syllabus Preview</h3>
+                        <div class="preview-actions">
+                            <button type="button" id="copy-markdown" class="btn btn-secondary">Copy Markdown</button>
+                            <button type="button" id="download-word" class="btn btn-primary">Download Word</button>
+                        </div>
+                    </div>
+                    <div id="syllabus-preview" class="syllabus-preview">
+                        <!-- Preview content populated dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="form-navigation">
+                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>Previous</button>
+                <button type="button" id="next-btn" class="btn btn-primary">Next</button>
+            </div>
+        </form>
+    </main>
+
+    <footer class="footer">
+        <p>UNC Syllabus Generator &mdash; Designed for UNC-Chapel Hill instructors</p>
+    </footer>
+
+    <!-- Objective Template (hidden) -->
+    <template id="objective-template">
+        <div class="objective-item">
+            <input type="text" class="objective-input" placeholder="Students will be able to...">
+            <button type="button" class="btn btn-remove remove-objective">Remove</button>
+        </div>
+    </template>
+
+    <!-- Material Template (hidden) --><template id="material-template">
+        <div class="material-item">
+            <div class="form-row">
+                <div class="form-group flex-2">
+                    <label>Title</label>
+                    <input type="text" class="material-title" placeholder="Book title">
+                </div>
+                <div class="form-group flex-1">
+                    <label>Author</label>
+                    <input type="text" class="material-author" placeholder="Author(s)">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group flex-1">
+                    <label>Publisher</label>
+                    <input type="text" class="material-publisher" placeholder="Publisher">
+                </div>
+                <div class="form-group flex-1">
+                    <label>Edition</label>
+                    <input type="text" class="material-edition" placeholder="Edition">
+                </div>
+                <div class="form-group flex-1">
+                    <label>ISBN (optional)</label>
+                    <input type="text" class="material-isbn" placeholder="ISBN">
+                </div>
+                <button type="button" class="btn btn-remove remove-material">Remove</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="js/course-lookup.js"></script>
+    <script src="js/form-wizard.js"></script>
+    <script src="js/syllabus-builder.js"></script>
+    <script src="js/export.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

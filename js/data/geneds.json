@@ -1,0 +1,234 @@
+{
+  "FY-THRIVE": {
+    "name": "College Thriving",
+    "category": "First-Year Foundations",
+    "outcomes": [
+      "Increase and appreciate the significance of self-awareness",
+      "Value a liberal arts education",
+      "Develop goal-setting and reflection skills using metacognition and self-regulated learning",
+      "Describe academic strategies, policies, and pathways and their link to resources",
+      "Reflect on components of thriving including positive emotion, engagement, meaning, and resilience",
+      "Master mental health, substance use, and sexual wellness fundamentals"
+    ]
+  },
+  "FY-WRITING": {
+    "name": "Writing at the Research University",
+    "category": "First-Year Foundations",
+    "outcomes": [
+      "Employ conventions, genres, and rhetoric practiced in the natural sciences, social sciences, and humanities",
+      "Conduct research using a variety of methods, databases, and sources",
+      "Discuss and present research-based arguments and information",
+      "Identify discipline-specific approaches to using research and evidence",
+      "Compose using written, oral, and multimedia modes",
+      "Review and revise one's own work and assist others in revising their work"
+    ]
+  },
+  "FY-SEMINAR": {
+    "name": "First-Year Seminar",
+    "category": "First-Year Foundations",
+    "outcomes": [
+      "Establish early faculty connections in educational journey",
+      "Learn intensively among a small cohort of students",
+      "Apply disciplinary methods for posing problems and evaluating knowledge",
+      "Produce knowledge through self-directed inquiry and active learning"
+    ]
+  },
+  "FY-LAUNCH": {
+    "name": "First-Year Launch",
+    "category": "First-Year Foundations",
+    "outcomes": [
+      "Establish early faculty connections in educational journey",
+      "Learn intensively among a small cohort of students",
+      "Understand foundational discipline concepts",
+      "Analyze and communicate broad introductory topics"
+    ]
+  },
+  "FY-DATA": {
+    "name": "Data Literacy Lab",
+    "category": "First-Year Foundations",
+    "outcomes": [
+      "Demonstrate understanding of the essentials of computer architecture and data security",
+      "Recognize how data is collected, manipulated, and accessed",
+      "Interpret analyzed data to make meaningful conclusions",
+      "Identify the ethical challenges that arise when working with data and their impact on society"
+    ]
+  },
+  "GLBL-LANG": {
+    "name": "Global Language",
+    "category": "First-Year Foundations",
+    "outcomes": [
+      "Communicate orally and in writing in a foreign language across varied situations and audiences",
+      "Demonstrate comprehension of oral and written texts in a foreign language on a wide range of topics",
+      "Apply perspectives, practices, and ideas associated with the culture(s) of a foreign language"
+    ]
+  },
+  "FC-AESTH": {
+    "name": "Aesthetic and Interpretive Analysis",
+    "category": "Focus Capacities",
+    "outcomes": [
+      "Interpret and critique literary and artistic expression",
+      "Analyze literary and artistic works in various contexts (social, political, historical, philosophical, etc.)",
+      "Explain how aesthetic expression enhances human experience"
+    ]
+  },
+  "FC-CREATE": {
+    "name": "Creative Expression, Practice, and Production",
+    "category": "Focus Capacities",
+    "outcomes": [
+      "Compose, design, build, present, or perform a work that is the result of immersion in a creative process",
+      "Explain the roles and influences of creativity, technologies, materials, and design processes",
+      "Evaluate their own and others' creative work to demonstrate how critique creates value"
+    ]
+  },
+  "FC-PAST": {
+    "name": "Engagement with the Human Past",
+    "category": "Focus Capacities",
+    "outcomes": [
+      "Develop knowledge of different spatiotemporal scales, patterns, ideas, figures, and events from the past",
+      "Evaluate primary source material and/or other historical evidence of past conditions",
+      "Assess conflicting historical narratives based on evidence and methodologies",
+      "Generate and evaluate arguments based on the analysis of primary and scholarly sources",
+      "Apply historical methods and knowledge to make informed judgments about the past and the present"
+    ]
+  },
+  "FC-VALUES": {
+    "name": "Ethical and Civic Values",
+    "category": "Focus Capacities",
+    "outcomes": [
+      "Explain the contexts in which questions of justification arise",
+      "Assess ethical values in terms of reasons offered",
+      "Recognize different ethical perspectives and the distinctive approaches these perspectives bring to questions of value",
+      "Analyze the differences between personal ethical decisions and those bearing on the public and civic spheres"
+    ]
+  },
+  "FC-GLOBAL": {
+    "name": "Global Understanding and Engagement",
+    "category": "Focus Capacities",
+    "outcomes": [
+      "Classify and analyze diverse historical, social, and political exchanges that shape nations, regions, and cultural traditions",
+      "Translate among contrasting civic cultures, social values, and moral commitments that characterize differences among peoples",
+      "Assess ways that political and economic institutions shape contemporary global relations",
+      "Explain human and environmental challenges that transcend national borders"
+    ]
+  },
+  "FC-NATSCI": {
+    "name": "Natural Scientific Investigation",
+    "category": "Focus Capacities",
+    "outcomes": [
+      "Demonstrate the ability to use scientific knowledge, logic, and imagination to construct and justify scientific claims",
+      "Analyze and apply processes of scientific inquiry as dictated by the phenomena and questions at hand",
+      "Evaluate science-related claims and information from popular and/or peer-reviewed sources",
+      "Identify, assess, and make informed decisions about ethical issues at the intersections of the natural sciences and society"
+    ]
+  },
+  "FC-POWER": {
+    "name": "Power and Society",
+    "category": "Focus Capacities",
+    "outcomes": [
+      "Analyze configurations of social, economic, and political power and how they influence the functioning of societies",
+      "Examine how the organization of social, economic, and political systems affects the distribution of resources, opportunities, and influence",
+      "Interrogate the processes by which such systems are established, sustained, and at times challenged and changed"
+    ]
+  },
+  "FC-QUANT": {
+    "name": "Quantitative Reasoning",
+    "category": "Focus Capacities",
+    "outcomes": [
+      "Summarize, interpret, and present quantitative data in mathematical forms, such as graphs, diagrams, tables, or mathematical text",
+      "Develop or compute representations of data using mathematical forms or equations as models",
+      "Make and evaluate important assumptions in the estimation, modeling, and analysis of data",
+      "Apply mathematical concepts, data, procedures, and solutions to make judgments and draw conclusions",
+      "Synthesize and present quantitative data to others to explain findings or to provide quantitative evidence"
+    ]
+  },
+  "FC-KNOWING": {
+    "name": "Ways of Knowing",
+    "category": "Focus Capacities",
+    "outcomes": [
+      "Recognize and use one or more approach(es) to developing and validating knowledge of the unfamiliar world",
+      "Evaluate ways that temporal, spatial, scientific, and philosophical categories structure knowledge",
+      "Interrogate assumptions that underlie our own perceptions of the world",
+      "Employ strategies to mitigate or adjust for preconceptions and biases",
+      "Apply critical insights to understand patterns of experience and belief"
+    ]
+  },
+  "FC-LAB": {
+    "name": "Empirical Investigation Lab",
+    "category": "Focus Capacities",
+    "outcomes": [
+      "Take empirical measurements using appropriate apparatus",
+      "Generate and test hypotheses",
+      "Gather, store, and organize data",
+      "Analyze and report on data and hypothesis testing"
+    ]
+  },
+  "RESEARCH": {
+    "name": "Research and Discovery",
+    "category": "Reflection and Integration",
+    "outcomes": [
+      "Frame a topic, develop an original research question or creative goal, and establish a point of view, creative approach, or hypothesis",
+      "Obtain a procedural understanding of how conclusions can be reached in a field and gather appropriate evidence",
+      "Evaluate the quality of the arguments and/or evidence in support of the emerging product",
+      "Communicate findings in clear and compelling ways",
+      "Critique and identify the limits of the conclusions of the project and generate ideas for future work"
+    ]
+  },
+  "HIGH-IMPACT": {
+    "name": "High-Impact Experience",
+    "category": "Reflection and Integration",
+    "outcomes": [
+      "Explain the connections between academic studies and outside-the-classroom experiences and observations",
+      "Apply knowledge in complex or ambiguous situations",
+      "Develop questions from experiences and observations to deepen and extend academic inquiry"
+    ]
+  },
+  "COMMBEYOND": {
+    "name": "Communication Beyond Carolina",
+    "category": "Reflection and Integration",
+    "outcomes": [
+      "Ascertain the expectations, opportunities, and barriers to oral communication in distinct situations",
+      "Tailor oral communications to different kinds of settings, including individual, small group, and public communication",
+      "Tailor oral communications to different levels of expertise and varying levels of alignment with distinct contexts",
+      "Make informed situation- and audience-sensitive strategic choices in content and delivery",
+      "Improve ability to move audiences, as measured by best practices, audience feedback, and instructor feedback"
+    ]
+  },
+  "INTERDISC": {
+    "name": "Interdisciplinary",
+    "category": "Reflection and Integration",
+    "outcomes": [
+      "Compare and contrast the questions and methods multiple disciplines might use to gain a more complete understanding",
+      "Explain how an interdisciplinary approach changes our ability to solve problems and form understandings of complex topics",
+      "Synthesize knowledge and processes from multiple disciplines to solve problems and/or generate new ideas"
+    ]
+  },
+  "LIFE-FIT": {
+    "name": "Lifetime Fitness",
+    "category": "Reflection and Integration",
+    "outcomes": [
+      "Engage in healthy physical activity and nutritional behaviors",
+      "Assess your own physical activity and fitness",
+      "Design and initiate a personal physical activity plan for aerobic and muscular fitness",
+      "Create solutions for overcoming barriers to maintaining lifetime fitness and proper nutrition throughout life"
+    ]
+  },
+  "CAMPUS-LIFE": {
+    "name": "Campus Life Experience",
+    "category": "Reflection and Integration",
+    "outcomes": [
+      "Attend a diverse set of campus performances, lectures, and events",
+      "Interpret performances, lectures, and events in light of academic study",
+      "Participate in the life of a university campus and its activities outside the classroom"
+    ]
+  },
+  "AMER-DEM": {
+    "name": "Foundations of American Democracy",
+    "category": "Additional Requirements",
+    "outcomes": [
+      "Identify and analyze the political, historical, and cultural impact of founding documents on governance and democracy in America",
+      "Identify and analyze the political, historical, and cultural impact of key milestones in American history on the evolution of democratic republicanism",
+      "Evaluate key concepts, principles, arguments and contexts in founding documents of the American republic",
+      "Evaluate key milestones in progress and challenges in the effort to form 'a more perfect Union'"
+    ]
+  }
+}
