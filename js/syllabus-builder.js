@@ -16,7 +16,7 @@ const SyllabusBuilder = (function() {
         attendancePolicy: '',
         materials: [],
         additionalMaterials: '',
-        includeDiversity: true,
+        diversityStatement: 'The course engages diverse scholarly perspectives to develop critical thinking, analysis, and debate, and inclusion of a reading does not imply endorsement.',
         includeCompliance: false,
         customStatements: ''
     };
@@ -193,9 +193,9 @@ const SyllabusBuilder = (function() {
         }
 
         // Diversity Statement
-        if (syllabusData.includeDiversity) {
+        if (syllabusData.diversityStatement && syllabusData.diversityStatement.trim()) {
             md += `---\n\n`;
-            md += `*The course engages diverse scholarly perspectives to develop critical thinking, analysis, and debate, and inclusion of a reading does not imply endorsement.*\n\n`;
+            md += `*${syllabusData.diversityStatement}*\n\n`;
         }
 
         // Compliance Statement
@@ -310,9 +310,9 @@ const SyllabusBuilder = (function() {
         }
 
         // Diversity Statement
-        if (syllabusData.includeDiversity) {
+        if (syllabusData.diversityStatement && syllabusData.diversityStatement.trim()) {
             html += `<hr>`;
-            html += `<p><em>The course engages diverse scholarly perspectives to develop critical thinking, analysis, and debate, and inclusion of a reading does not imply endorsement.</em></p>`;
+            html += `<p><em>${formatTextToHTML(syllabusData.diversityStatement)}</em></p>`;
         }
 
         // Compliance Statement
@@ -349,7 +349,7 @@ const SyllabusBuilder = (function() {
             attendancePolicy: '',
             materials: [],
             additionalMaterials: '',
-            includeDiversity: true,
+            diversityStatement: 'The course engages diverse scholarly perspectives to develop critical thinking, analysis, and debate, and inclusion of a reading does not imply endorsement.',
             includeCompliance: false,
             customStatements: ''
         };

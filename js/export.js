@@ -325,12 +325,12 @@ const Export = (function() {
         }
 
         // Diversity Statement
-        if (syllabusData.includeDiversity) {
+        if (syllabusData.diversityStatement && syllabusData.diversityStatement.trim()) {
             children.push(
                 new Paragraph({
                     children: [
                         new TextRun({
-                            text: 'The course engages diverse scholarly perspectives to develop critical thinking, analysis, and debate, and inclusion of a reading does not imply endorsement.',
+                            text: syllabusData.diversityStatement,
                             italics: true
                         })
                     ]

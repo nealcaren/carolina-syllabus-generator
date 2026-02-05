@@ -39,9 +39,8 @@
         materialTemplate: document.getElementById('material-template'),
 
         // Statements
-        includeDiversity: document.getElementById('include-diversity'),
+        diversityStatement: document.getElementById('diversity-statement'),
         includeCompliance: document.getElementById('include-compliance'),
-        diversityPreview: document.getElementById('diversity-statement-preview'),
         compliancePreview: document.getElementById('compliance-statement-preview'),
         customStatements: document.getElementById('custom-statements'),
 
@@ -108,10 +107,9 @@
             saveDraft();
         });
 
-        // Diversity statement checkbox
-        elements.includeDiversity.addEventListener('change', () => {
-            SyllabusBuilder.updateField('includeDiversity', elements.includeDiversity.checked);
-            elements.diversityPreview.classList.toggle('hidden', !elements.includeDiversity.checked);
+        // Diversity statement textarea
+        elements.diversityStatement.addEventListener('input', () => {
+            SyllabusBuilder.updateField('diversityStatement', elements.diversityStatement.value);
             saveDraft();
         });
 
