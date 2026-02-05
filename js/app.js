@@ -260,8 +260,7 @@
                 collectMaterialsData();
                 break;
             case 5:
-                SyllabusBuilder.updateField('includeDiversity', elements.includeDiversity.checked);
-                SyllabusBuilder.updateField('includeCompliance', elements.includeCompliance.checked);
+                SyllabusBuilder.updateField('diversityStatement', elements.diversityStatement.value);
                 SyllabusBuilder.updateField('customStatements', elements.customStatements.value);
                 break;
         }
