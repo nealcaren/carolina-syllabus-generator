@@ -160,9 +160,10 @@ const SyllabusBuilder = (function() {
         }
 
         // Required Materials
-        if (syllabusData.materials.length > 0 || syllabusData.additionalMaterials.trim()) {
-            md += `## Required Text(s) for Purchase\n\n`;
+        md += `## Required Materials\n\n`;
+        const hasRequiredMaterials = syllabusData.materials.some(m => m.title);
 
+        if (hasRequiredMaterials || syllabusData.additionalMaterials.trim()) {
             for (const material of syllabusData.materials) {
                 if (material.title) {
                     let entry = `- **${material.title}**`;
@@ -181,6 +182,8 @@ const SyllabusBuilder = (function() {
                 md += `${syllabusData.additionalMaterials}\n`;
             }
             md += '\n';
+        } else {
+            md += `Students are not required to purchase any course materials.\n\n`;
         }
 
         // Custom Statements
@@ -271,28 +274,33 @@ const SyllabusBuilder = (function() {
         }
 
         // Required Materials
-        if (syllabusData.materials.length > 0 || syllabusData.additionalMaterials.trim()) {
-            html += `<h2>Required Text(s) for Purchase</h2>`;
-            html += `<ul>`;
+        html += `<h2>Required Materials</h2>`;
+        const hasRequiredMaterialsHtml = syllabusData.materials.some(m => m.title);
 
-            for (const material of syllabusData.materials) {
-                if (material.title) {
-                    let entry = `<strong>${material.title}</strong>`;
-                    if (material.author) entry += ` by ${material.author}`;
-                    if (material.publisher || material.edition) {
-                        const pubInfo = [material.publisher, material.edition].filter(Boolean).join(', ');
-                        entry += ` (${pubInfo})`;
+        if (hasRequiredMaterialsHtml || syllabusData.additionalMaterials.trim()) {
+            if (hasRequiredMaterialsHtml) {
+                html += `<ul>`;
+                for (const material of syllabusData.materials) {
+                    if (material.title) {
+                        let entry = `<strong>${material.title}</strong>`;
+                        if (material.author) entry += ` by ${material.author}`;
+                        if (material.publisher || material.edition) {
+                            const pubInfo = [material.publisher, material.edition].filter(Boolean).join(', ');
+                            entry += ` (${pubInfo})`;
+                        }
+                        if (material.isbn) entry += ` ISBN: ${material.isbn}`;
+                        html += `<li>${entry}</li>`;
                     }
-                    if (material.isbn) entry += ` ISBN: ${material.isbn}`;
-                    html += `<li>${entry}</li>`;
                 }
+                html += `</ul>`;
             }
-            html += `</ul>`;
 
             if (syllabusData.additionalMaterials.trim()) {
                 html += `<h3>Additional Materials</h3>`;
                 html += `<p>${formatTextToHTML(syllabusData.additionalMaterials)}</p>`;
             }
+        } else {
+            html += `<p>Students are not required to purchase any course materials.</p>`;
         }
 
         // Custom Statements

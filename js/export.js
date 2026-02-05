@@ -261,14 +261,16 @@ const Export = (function() {
         }
 
         // Required Materials
-        if (syllabusData.materials.length > 0 || syllabusData.additionalMaterials.trim()) {
-            children.push(
-                new Paragraph({
-                    text: 'Required Text(s) for Purchase',
-                    heading: HeadingLevel.HEADING_1
-                })
-            );
+        children.push(
+            new Paragraph({
+                text: 'Required Materials',
+                heading: HeadingLevel.HEADING_1
+            })
+        );
 
+        const hasRequiredMaterialsWord = syllabusData.materials.some(m => m.title);
+
+        if (hasRequiredMaterialsWord || syllabusData.additionalMaterials.trim()) {
             for (const material of syllabusData.materials) {
                 if (material.title) {
                     let text = material.title;
@@ -300,8 +302,10 @@ const Export = (function() {
                 );
                 children.push(new Paragraph({ text: syllabusData.additionalMaterials }));
             }
-            children.push(new Paragraph({ text: '' }));
+        } else {
+            children.push(new Paragraph({ text: 'Students are not required to purchase any course materials.' }));
         }
+        children.push(new Paragraph({ text: '' }));
 
         // Custom Statements
         if (syllabusData.customStatements.trim()) {
