@@ -91,11 +91,20 @@ const Export = (function() {
 
         const children = [];
 
+        // Spacing constants (in twips: 1 point = 20 twips)
+        const SPACE_AFTER_TITLE = 400;      // 20pt
+        const SPACE_BEFORE_H1 = 480;        // 24pt
+        const SPACE_AFTER_H1 = 120;         // 6pt
+        const SPACE_BEFORE_H2 = 240;        // 12pt
+        const SPACE_AFTER_H2 = 120;         // 6pt
+        const SPACE_AFTER_PARA = 200;       // 10pt
+
         // Title
         children.push(
             new Paragraph({
                 text: `${course.prefix} ${course.number}: ${course.title}`,
-                heading: HeadingLevel.TITLE
+                heading: HeadingLevel.TITLE,
+                spacing: { after: SPACE_AFTER_TITLE }
             })
         );
 
@@ -103,27 +112,32 @@ const Export = (function() {
         children.push(
             new Paragraph({
                 text: 'Course Description',
-                heading: HeadingLevel.HEADING_1
+                heading: HeadingLevel.HEADING_1,
+                spacing: { before: SPACE_BEFORE_H1, after: SPACE_AFTER_H1 }
             })
         );
         children.push(
-            new Paragraph({ text: course.description })
+            new Paragraph({
+                text: course.description,
+                spacing: { after: SPACE_AFTER_PARA }
+            })
         );
         children.push(
             new Paragraph({
                 children: [
                     new TextRun({ text: 'Credits: ', bold: true }),
                     new TextRun({ text: String(course.credits) })
-                ]
+                ],
+                spacing: { after: SPACE_AFTER_PARA }
             })
         );
-        children.push(new Paragraph({ text: '' }));
 
         // Student Learning Outcomes
         children.push(
             new Paragraph({
                 text: 'Student Learning Outcomes',
-                heading: HeadingLevel.HEADING_1
+                heading: HeadingLevel.HEADING_1,
+                spacing: { before: SPACE_BEFORE_H1, after: SPACE_AFTER_H1 }
             })
         );
 
@@ -132,21 +146,25 @@ const Export = (function() {
             children.push(
                 new Paragraph({
                     text: 'Course Learning Objectives',
-                    heading: HeadingLevel.HEADING_2
+                    heading: HeadingLevel.HEADING_2,
+                    spacing: { before: SPACE_BEFORE_H2, after: SPACE_AFTER_H2 }
                 })
             );
             children.push(
-                new Paragraph({ text: 'By the end of this course, students will be able to:' })
+                new Paragraph({
+                    text: 'By the end of this course, students will be able to:',
+                    spacing: { after: 120 }
+                })
             );
             for (const objective of syllabusData.courseObjectives) {
                 children.push(
                     new Paragraph({
                         text: objective,
-                        bullet: { level: 0 }
+                        bullet: { level: 0 },
+                        spacing: { after: 60 }
                     })
                 );
             }
-            children.push(new Paragraph({ text: '' }));
         }
 
         // Gen Ed Outcomes (use confirmed gen eds, or fall back to all)
@@ -158,32 +176,35 @@ const Export = (function() {
             children.push(
                 new Paragraph({
                     text: `${gened.name} Learning Outcomes`,
-                    heading: HeadingLevel.HEADING_2
+                    heading: HeadingLevel.HEADING_2,
+                    spacing: { before: SPACE_BEFORE_H2, after: SPACE_AFTER_H2 }
                 })
             );
             for (const outcome of gened.outcomes) {
                 children.push(
                     new Paragraph({
                         text: outcome,
-                        bullet: { level: 0 }
+                        bullet: { level: 0 },
+                        spacing: { after: 60 }
                     })
                 );
             }
-            children.push(new Paragraph({ text: '' }));
         }
 
         // Grading
         children.push(
             new Paragraph({
                 text: 'Grading',
-                heading: HeadingLevel.HEADING_1
+                heading: HeadingLevel.HEADING_1,
+                spacing: { before: SPACE_BEFORE_H1, after: SPACE_AFTER_H1 }
             })
         );
 
         children.push(
             new Paragraph({
                 text: 'Grade Scale',
-                heading: HeadingLevel.HEADING_2
+                heading: HeadingLevel.HEADING_2,
+                spacing: { before: SPACE_BEFORE_H2, after: SPACE_AFTER_H2 }
             })
         );
 
@@ -196,15 +217,18 @@ const Export = (function() {
         } else {
             gradeScaleText = syllabusData.customScaleText || 'Custom scale';
         }
-        children.push(new Paragraph({ text: gradeScaleText }));
-        children.push(new Paragraph({ text: '' }));
+        children.push(new Paragraph({
+            text: gradeScaleText,
+            spacing: { after: SPACE_AFTER_PARA }
+        }));
 
         // Assignment Table
         if (syllabusData.assignments.length > 0) {
             children.push(
                 new Paragraph({
                     text: 'Grade Breakdown',
-                    heading: HeadingLevel.HEADING_2
+                    heading: HeadingLevel.HEADING_2,
+                    spacing: { before: SPACE_BEFORE_H2, after: SPACE_AFTER_H2 }
                 })
             );
 
@@ -246,7 +270,6 @@ const Export = (function() {
                     width: { size: 100, type: WidthType.PERCENTAGE }
                 })
             );
-            children.push(new Paragraph({ text: '' }));
         }
 
         // Attendance Policy
@@ -254,23 +277,27 @@ const Export = (function() {
             children.push(
                 new Paragraph({
                     text: 'Attendance and Participation',
-                    heading: HeadingLevel.HEADING_2
+                    heading: HeadingLevel.HEADING_2,
+                    spacing: { before: SPACE_BEFORE_H2, after: SPACE_AFTER_H2 }
                 })
             );
             const attendanceLines = syllabusData.attendancePolicy.split('\n');
             for (const line of attendanceLines) {
                 if (line.trim()) {
-                    children.push(new Paragraph({ text: line }));
+                    children.push(new Paragraph({
+                        text: line,
+                        spacing: { after: 120 }
+                    }));
                 }
             }
-            children.push(new Paragraph({ text: '' }));
         }
 
         // Required Materials
         children.push(
             new Paragraph({
                 text: 'Required Materials',
-                heading: HeadingLevel.HEADING_1
+                heading: HeadingLevel.HEADING_1,
+                spacing: { before: SPACE_BEFORE_H1, after: SPACE_AFTER_H1 }
             })
         );
 
@@ -293,7 +320,8 @@ const Export = (function() {
                                 new TextRun({ text: material.title, bold: true }),
                                 new TextRun({ text: text.substring(material.title.length) })
                             ],
-                            bullet: { level: 0 }
+                            bullet: { level: 0 },
+                            spacing: { after: 60 }
                         })
                     );
                 }
@@ -303,31 +331,40 @@ const Export = (function() {
                 children.push(
                     new Paragraph({
                         text: 'Additional Materials',
-                        heading: HeadingLevel.HEADING_2
+                        heading: HeadingLevel.HEADING_2,
+                        spacing: { before: SPACE_BEFORE_H2, after: SPACE_AFTER_H2 }
                     })
                 );
-                children.push(new Paragraph({ text: syllabusData.additionalMaterials }));
+                children.push(new Paragraph({
+                    text: syllabusData.additionalMaterials,
+                    spacing: { after: SPACE_AFTER_PARA }
+                }));
             }
         } else {
-            children.push(new Paragraph({ text: 'Students are not required to purchase any course materials.' }));
+            children.push(new Paragraph({
+                text: 'Students are not required to purchase any course materials.',
+                spacing: { after: SPACE_AFTER_PARA }
+            }));
         }
-        children.push(new Paragraph({ text: '' }));
 
         // Custom Statements
         if (syllabusData.customStatements.trim()) {
             children.push(
                 new Paragraph({
                     text: 'Course Policies',
-                    heading: HeadingLevel.HEADING_1
+                    heading: HeadingLevel.HEADING_1,
+                    spacing: { before: SPACE_BEFORE_H1, after: SPACE_AFTER_H1 }
                 })
             );
             const statementLines = syllabusData.customStatements.split('\n');
             for (const line of statementLines) {
                 if (line.trim()) {
-                    children.push(new Paragraph({ text: line }));
+                    children.push(new Paragraph({
+                        text: line,
+                        spacing: { after: 120 }
+                    }));
                 }
             }
-            children.push(new Paragraph({ text: '' }));
         }
 
         // Diversity Statement
@@ -339,7 +376,8 @@ const Export = (function() {
                             text: syllabusData.diversityStatement,
                             italics: true
                         })
-                    ]
+                    ],
+                    spacing: { before: SPACE_BEFORE_H1, after: SPACE_AFTER_PARA }
                 })
             );
         }
@@ -353,7 +391,8 @@ const Export = (function() {
                             text: 'This syllabus has been prepared in compliance with UNC System Policy. The university respects the professor\'s expertise and discretion in course design, including the selection of course materials based on their academic merit. The readings and materials in this course have been chosen for their scholarly value in achieving the educational objectives described above.',
                             italics: true
                         })
-                    ]
+                    ],
+                    spacing: { before: 200, after: SPACE_AFTER_PARA }
                 })
             );
         }
