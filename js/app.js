@@ -95,6 +95,16 @@
         // Add material button
         elements.addMaterialBtn.addEventListener('click', addMaterialRow);
 
+        // Course description (editable)
+        elements.courseDescription.addEventListener('input', () => {
+            const data = SyllabusBuilder.getData();
+            if (data.course) {
+                data.course.description = elements.courseDescription.value;
+                SyllabusBuilder.setCourse(data.course);
+                saveDraft();
+            }
+        });
+
         // Attendance policy
         elements.attendancePolicy.addEventListener('input', () => {
             SyllabusBuilder.updateField('attendancePolicy', elements.attendancePolicy.value);
