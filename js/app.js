@@ -57,7 +57,7 @@
         // Initialize modules
         await CourseLookup.init(handleCourseSelect);
         FormWizard.init(handleStepChange);
-        await Export.init();
+        // Export.init() is called lazily when Download Word is clicked
 
         // Set up event listeners
         setupEventListeners();

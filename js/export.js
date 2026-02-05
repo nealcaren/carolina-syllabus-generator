@@ -13,7 +13,7 @@ const Export = (function() {
     async function init() {
         if (!docxLoaded && typeof docx === 'undefined') {
             try {
-                await loadScript('https://unpkg.com/docx@8.5.0/build/index.js');
+                await loadScript('https://cdn.jsdelivr.net/npm/docx@9.5.1/dist/index.iife.js');
                 docxLoaded = true;
             } catch (error) {
                 console.error('Failed to load docx library:', error);
@@ -28,10 +28,16 @@ const Export = (function() {
      */
     function loadScript(src) {
         return new Promise((resolve, reject) => {
+            // Check if already loaded
+            if (document.querySelector(`script[src="${src}"]`)) {
+                resolve();
+                return;
+            }
             const script = document.createElement('script');
             script.src = src;
-            script.onload = resolve;
-            script.onerror = reject;
+            script.crossOrigin = 'anonymous';
+            script.onload = () => resolve();
+            script.onerror = (e) => reject(new Error('Script load failed: ' + src));
             document.head.appendChild(script);
         });
     }
