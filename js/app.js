@@ -47,7 +47,10 @@
         // Export
         syllabusPreview: document.getElementById('syllabus-preview'),
         copyMarkdownBtn: document.getElementById('copy-markdown'),
-        downloadWordBtn: document.getElementById('download-word')
+        downloadWordBtn: document.getElementById('download-word'),
+
+        // Clear button
+        clearBtn: document.getElementById('clear-btn')
     };
 
     /**
@@ -139,6 +142,9 @@
         // Export buttons
         elements.copyMarkdownBtn.addEventListener('click', handleCopyMarkdown);
         elements.downloadWordBtn.addEventListener('click', handleDownloadWord);
+
+        // Clear button
+        elements.clearBtn.addEventListener('click', handleClear);
     }
 
     /**
@@ -481,6 +487,55 @@
             console.error('Export error:', error);
             showToast('Failed to generate Word document', 'error');
         }
+    }
+
+    /**
+     * Handle clear button click - reset form and start fresh
+     */
+    function handleClear() {
+        if (!confirm('Are you sure you want to clear all data and start over?')) {
+            return;
+        }
+
+        // Clear localStorage
+        localStorage.removeItem('syllabusDraft');
+
+        // Reset SyllabusBuilder
+        SyllabusBuilder.reset();
+
+        // Reset form fields
+        document.getElementById('course-search').value = '';
+        elements.courseDetails.classList.add('hidden');
+        elements.coursePrefix.value = '';
+        elements.courseNumber.value = '';
+        elements.courseTitle.value = '';
+        elements.courseCredits.value = '';
+        elements.courseDescription.value = '';
+        elements.genedBadges.innerHTML = '';
+        elements.objectivesList.innerHTML = '';
+        elements.genedOutcomesContainer.innerHTML = '';
+
+        // Clear grading
+        document.querySelector('input[name="grade-scale"][value="standard"]').checked = true;
+        elements.customScale.classList.add('hidden');
+        elements.customScaleInput.value = '';
+        elements.assignmentTbody.innerHTML = '';
+        addAssignmentRow();
+        elements.attendancePolicy.value = '';
+
+        // Clear materials
+        elements.materialsList.innerHTML = '';
+        elements.additionalMaterials.value = '';
+
+        // Reset statements
+        elements.diversityStatement.value = 'The course engages diverse scholarly perspectives to develop critical thinking, analysis, and debate, and inclusion of a reading does not imply endorsement.';
+        SyllabusBuilder.updateField('diversityStatement', elements.diversityStatement.value);
+        elements.customStatements.value = '';
+
+        // Go back to step 1
+        FormWizard.goToStep(1);
+
+        showToast('Form cleared', 'success');
     }
 
     /**
